@@ -271,8 +271,70 @@
 //   }
 // }
 
+// Belajar appbar
 // component lengkap appbar
 
+// import 'package:flutter/material.dart';
+
+// void main() {
+//   runApp(MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: Scaffold(
+//           appBar: AppBar(
+//         backgroundColor: Colors.pinkAccent,
+//         title: Text(
+//           "Belajar appBar",
+//           style: TextStyle(color: Colors.white, fontSize: 25),
+//         ),
+//         centerTitle: false,
+//         leading: IconButton(
+//           icon: Icon(Icons.menu, color: Colors.white),
+//           onPressed: () {
+//             print("Icon button di klik");
+//           },
+//         ),
+//         actions: [
+//           IconButton(
+//             onPressed: () {
+//               print("Action button berhasil di kik");
+//             },
+//             icon: Icon(Icons.settings),
+//             color: Colors.white,
+//           )
+//         ],
+//         bottom: PreferredSize(
+
+//             // prefered size akan membuat jarak dari appbar dengan root paling awal hingga ke bagian bawah
+//             preferredSize: Size.fromHeight(100),
+//             child: Container(
+//               width: 100,
+//               height: 10,
+//               color: Colors.blue,
+//             )),
+//         flexibleSpace: SizedBox(
+//           child: Container(
+//             alignment: Alignment.center,
+//             color: Colors.blueGrey,
+//             child: Text(
+//               'this flexible space',
+//               style: TextStyle(color: Colors.white),
+//             ),
+//           ),
+//         ),
+//       )),
+//     );
+//   }
+// }
+
+// Belajar widget tabbar
 import 'package:flutter/material.dart';
 
 void main() {
@@ -280,55 +342,54 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
+      home: DefaultTabController(
+        length: 4, // Sesuai dengan jumlah Tab
+        child: Scaffold(
           appBar: AppBar(
-        backgroundColor: Colors.pinkAccent,
-        title: Text(
-          "Belajar appBar",
-          style: TextStyle(color: Colors.white, fontSize: 25),
-        ),
-        centerTitle: false,
-        leading: IconButton(
-          icon: Icon(Icons.menu, color: Colors.white),
-          onPressed: () {
-            print("Icon button di klik");
-          },
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              print("Action button berhasil di kik");
-            },
-            icon: Icon(Icons.settings),
-            color: Colors.white,
-          )
-        ],
-        bottom: PreferredSize(
-
-            // prefered size akan membuat jarak dari appbar dengan root paling awal hingga ke bagian bawah
-            preferredSize: Size.fromHeight(100),
-            child: Container(
-              width: 100,
-              height: 10,
-              color: Colors.blue,
-            )),
-        flexibleSpace: SizedBox(
-          child: Container(
-            alignment: Alignment.center,
-            color: Colors.blueGrey,
-            child: Text(
-              'this flexible space',
-              style: TextStyle(color: Colors.white),
+            centerTitle: true,
+            backgroundColor: Colors.greenAccent,
+            title: Text(
+              "Hallo ini adalah title",
+              style: TextStyle(fontSize: 20, color: Colors.white),
             ),
+            bottom: TabBar(
+              indicatorColor: Colors.white, // Warna indikator tab aktif
+              tabs: [
+                Tab(icon: Icon(Icons.home), text: 'Home'),
+                Tab(icon: Icon(Icons.search), text: 'Search'),
+                Tab(icon: Icon(Icons.favorite), text: 'Favorite'),
+                Tab(icon: Icon(Icons.person), text: 'Profile'),
+              ],
+            ),
+            leading: IconButton(
+              onPressed: () {
+                print("Tombol kembali diklik");
+              },
+              icon: Icon(Icons.arrow_back, color: Colors.white),
+            ),
+            actions: [
+              IconButton(
+                onPressed: () {
+                  print("Akun diklik");
+                },
+                icon: Icon(Icons.account_circle_rounded, color: Colors.white),
+              )
+            ],
+          ),
+          body: TabBarView(
+            children: [
+              Center(child: Text('Home Page')),
+              Center(child: Text('Search Page')),
+              Center(child: Text('Favorite Page')),
+              Center(child: Text('Profile Page')),
+            ],
           ),
         ),
-      )),
+      ),
     );
   }
 }
